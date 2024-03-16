@@ -1,21 +1,18 @@
 import discord
 
-TOKEN = 'ADD TOKEN'
-CHANNEL_ID = 'ADD CHANNEL ID'
+client = discord.Client()
 
-class MyClient(discord.Client):
-    async def on_ready(self):
-        print('Logged on as', self.user)
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client)) 
 
-    async def on_message(self, message):
-        if message.author == self.user:  
-            return
+@client.event
+async def on_message(message):
+    if message.author == client.user: 
+        return
 
-        if message.content.startswith('!strawberry'): 
-            await message.channel.send("Hello! 🍓")
+    if message.content.startswith('$hello'): 
+        await message.channel.send('Hello! 🍓') 
 
-intents = discord.Intents.default()
-intents.messages = True
-
-client = MyClient(intents=intents)
-client.run(TOKEN)
+# ADD YOUR TOKEN
+client.run('MTIxNzA5OTcyNjU4ODIxNTM3Ng.GlEu2_.Kj9eL-dElgLEn5JrT_2cZBBqfHzhAnJ2jF9ziA') 
