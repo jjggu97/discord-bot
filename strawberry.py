@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
  
+ 
 DISCORD_CHANNEL_ID = 1217099488959664231
 DISCORD_BOT_TOKEN = "MTIxNzA5OTcyNjU4ODIxNTM3Ng.GRVm9L.8hvwcj2kgpoHLhsvHExzvCv1ckuD5bWf3PD2BM"
  
