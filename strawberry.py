@@ -1,17 +1,35 @@
 import discord
+from discord.ext import commands
 
-client = discord.Client()
+# Create an instance of Bot
+bot = commands.Bot(command_prefix='!')
 
-@client.event
+# Event: Bot is ready
+@bot.event
 async def on_ready():
-    print(f'Logged in as {client.user}')
+    print('Bot is ready.')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+# Command: Ping
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong!')
 
-    if message.content == '안녕':
-        await message.channel.send('안녕하세요!')
+# Command: Say
+@bot.command()
+async def say(ctx, *, message):
+    await ctx.send(message)
 
-client.run('여러분의 디스코드 봇 토큰을 입력하세요')
+# Command: Kick
+@bot.command()
+async def kick(ctx, member: discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+    await ctx.send(f'{member.mention} has been kicked.')
+
+# Command: Ban
+@bot.command()
+async def ban(ctx, member: discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+    await ctx.send(f'{member.mention} has been banned.')
+
+# Run the bot
+bot.run('YOUR_BOT_TOKEN')
