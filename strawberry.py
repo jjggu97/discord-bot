@@ -1,35 +1,33 @@
 import discord
 from discord.ext import commands
-
-# Create an instance of Bot
 bot = commands.Bot(command_prefix='!')
 
-# Event: Bot is ready
+# enter discord bot token
+bot.run('YOUR_BOT_TOKEN')
+
+# bot is ready
 @bot.event
 async def on_ready():
     print('Bot is ready.')
 
-# Command: Ping
+# cmd - ping
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong!')
 
-# Command: Say
+# cmd - say
 @bot.command()
 async def say(ctx, *, message):
     await ctx.send(message)
 
-# Command: Kick
+# cmd - kick
 @bot.command()
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.send(f'{member.mention} has been kicked.')
 
-# Command: Ban
+# cmd - ban
 @bot.command()
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f'{member.mention} has been banned.')
-
-# Run the bot
-bot.run('YOUR_BOT_TOKEN')
